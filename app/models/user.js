@@ -6,6 +6,16 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  admin: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   hashedPassword: {
     type: String,
     required: true

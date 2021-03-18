@@ -45,6 +45,7 @@ router.post('/sign-up', (req, res, next) => {
       // return necessary params to create a user
       return {
         email: req.body.credentials.email,
+        username: req.body.credentials.username,
         hashedPassword: hash
       }
     })
@@ -137,5 +138,24 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
+// Index Users (admin only)
+router.get('/users', requireToken, (req, res, next) => {
+  User.find()
+    .then(user => {
+      res.status(200).json({ user: user })
+    })
+    .catch(next)
+})
+
+// Delete users
+// router.delete('/user/:id', requireToken, (req, res, next) => {
+//   User.findOne({ _id: req.params.id })
+//     .then(user => {
+//       return user.deleteOne()
+//     })
+//     .then(() => res.sendStatus(204))
+//     .catch(next)
+// })
 
 module.exports = router
