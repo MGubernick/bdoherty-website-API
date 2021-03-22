@@ -37,7 +37,7 @@ router.post('/items', requireToken, (req, res, next) => {
 // IDEX All Items
 // GET /items/all
 
-router.get('/items/all', requireToken, (req, res, next) => {
+router.get('/items/all', (req, res, next) => {
   Item.find()
     .populate('owner', '_id email username')
     .then(item => {
@@ -63,26 +63,7 @@ router.get('/items/sold', requireToken, (req, res, next) => {
 // SHOW (one item - will then allow update/delete)
 // GET /items/:id
 
-router.get('/items/:id', requireToken, (req, res, next) => {
-  // get the id
-  const id = req.params.id
-  // find the one recipe based on the id & owner (should only find recipes by this user)
-  Item.findOne({ _id: id, owner: req.user._id })
-  // populate the owner field with the id and email only
-    .populate('owner', '_id email username')
-    // handle any 404 erros
-    .then(handle404)
-
-    .then(item => {
-      requireOwnership(req, item)
-      res.status(200).json({ item: item })
-    })
-    .catch(next)
-})
-
-// SHOW (one item - will not allow update)
-// GET/items/sale/:id
-router.get('/recipes/sale/:id', requireToken, (req, res, next) => {
+router.get('/items/:id', (req, res, next) => {
   // get the id
   const id = req.params.id
   // find the one recipe based on the id & owner (should only find recipes by this user)
