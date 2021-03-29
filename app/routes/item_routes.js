@@ -89,10 +89,10 @@ router.patch('/items/:id', requireToken, removeBlanks, (req, res, next) => {
   Item.findOne({_id: itemId, owner: userId})
     .then(handle404)
     .then(item => {
-      requireOwnership(req, item)
+      // requireOwnership(req, item)
       return item.updateOne(itemData)
     })
-    .then(() => res.status(200).json({ recipe: itemData }))
+    .then(() => res.status(200).json({ item: itemData }))
     .catch(next)
 })
 
