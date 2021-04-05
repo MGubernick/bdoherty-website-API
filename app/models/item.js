@@ -10,6 +10,11 @@ const itemSchema = new mongoose.Schema({
     required: false,
     default: false
   },
+  inCart: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
   price: {
     type: Number,
     required: true
