@@ -16,7 +16,7 @@ const itemSchema = new mongoose.Schema({
     default: false
   },
   price: {
-    type: Number,
+    type: String,
     required: true
   },
   measurements: {

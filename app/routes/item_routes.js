@@ -96,6 +96,22 @@ router.patch('/items/:id', requireToken, removeBlanks, (req, res, next) => {
     .catch(next)
 })
 
+/// UPDATE Cart
+// PATCH /items-incart/:id
+router.patch('/items-incart/:id', removeBlanks, (req, res, next) => {
+  const itemData = req.body.item
+  delete itemData.owner
+  const itemId = req.params.id
+  Item.findOne({_id: itemId})
+    .then(handle404)
+    .then(item => {
+      // requireOwnership(req, item)
+      return item.updateOne(itemData)
+    })
+    .then(() => res.status(200).json({ item: itemData }))
+    .catch(next)
+})
+
 // DELETE
 // DELETE /items/:id
 
