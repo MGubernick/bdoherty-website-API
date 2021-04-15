@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+const myCartSchema = require('./myCart.js')
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -16,6 +18,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  myCart: [myCartSchema],
   hashedPassword: {
     type: String,
     required: true
