@@ -42,7 +42,7 @@ router.delete('/fromMyCart/:id', requireToken, (req, res, next) => {
       user.myCart.id(itemId).remove()
       return user.save()
     })
-    .then(user => res.sendStatus(201).json({ user: user }))
+    .then(() => res.sendStatus(200))
     .catch(next)
 })
 

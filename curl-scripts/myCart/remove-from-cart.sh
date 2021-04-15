@@ -5,10 +5,5 @@ curl "http://localhost:4741/fromMyCart/${CartItemId}" \
   --request DELETE \
   --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
-  --data '{
-    "cartItem": {
-      "shopper": "'"${UserId}"'"
-    }
-  }'
 
 echo
