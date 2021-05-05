@@ -46,7 +46,7 @@ router.get('/items/all', (req, res, next) => {
     .catch(next)
 })
 
-// INDEX for Sold recipes
+// INDEX for Sold items
 // GET /items/sold
 
 router.get('/items/sold', requireToken, (req, res, next) => {
